@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Mercado BDM</string>
+    <string name="productsItemTitle">Produtos</string>
+    <string name="servicesItemTitle">Serviços</string>
+    <string name="advertiseItemTitle">Anuncie</string>
+    <string name="bdm_2_lines">%s\nBDM</string>
+</resources>

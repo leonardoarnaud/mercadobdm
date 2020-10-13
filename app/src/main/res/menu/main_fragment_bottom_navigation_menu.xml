@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/productsItem"
+        android:title="@string/productsItemTitle"
+        android:icon="@drawable/ic_baseline_card_giftcard_24"
+        />
+
+    <item
+        android:id="@+id/servicesItem"
+        android:title="@string/servicesItemTitle"
+        android:icon="@drawable/ic_baseline_build_24"
+        />
+
+    <item
+        android:id="@+id/advertiseItem"
+        android:title="@string/advertiseItemTitle"
+        android:icon="@drawable/ic_baseline_business_24"
+        />
+
+</menu>
