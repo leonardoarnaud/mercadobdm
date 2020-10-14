@@ -1,6 +1,6 @@
 package br.eti.arnaud.mercadobdm.model
 
-class Product(
+class Service(
     title: String,
     description: String,
     price: String,

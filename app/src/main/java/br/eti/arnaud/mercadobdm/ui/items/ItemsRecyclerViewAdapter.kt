@@ -1,21 +1,19 @@
-package br.eti.arnaud.mercadobdm.ui.products
+package br.eti.arnaud.mercadobdm.ui.items
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import br.eti.arnaud.mercadobdm.R
-import br.eti.arnaud.mercadobdm.model.Product
-import kotlinx.android.synthetic.main.item_normal_product.view.*
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.ArrayList
+import br.eti.arnaud.mercadobdm.model.Contact
+import br.eti.arnaud.mercadobdm.model.Item
+import kotlinx.android.synthetic.main.item_normal.view.*
 
-class ProductsRecyclerViewAdapter: RecyclerView.Adapter<ProductsRecyclerViewAdapter.ViewHolder>() {
+class ItemsRecyclerViewAdapter: RecyclerView.Adapter<ItemsRecyclerViewAdapter.ViewHolder>() {
 
-    var onItemClick: ((Product) -> Unit)? = null
+    var onItemClick: ((Item) -> Unit)? = null
 
-    var products: List<Product> = ArrayList()
+    var items: List<Item> = ArrayList()
         set(value) {
             notifyDataSetChanged()
             field = value
@@ -25,7 +23,7 @@ class ProductsRecyclerViewAdapter: RecyclerView.Adapter<ProductsRecyclerViewAdap
         return ViewHolder(
             LayoutInflater.from(parent.context)
             .inflate(
-                R.layout.item_normal_product,
+                R.layout.item_normal,
                 parent,
                 false
             )
@@ -33,19 +31,28 @@ class ProductsRecyclerViewAdapter: RecyclerView.Adapter<ProductsRecyclerViewAdap
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (products[position].featured) FEATURED else NORMAL
+        return if (items[position].featured) FEATURED else NORMAL
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = products[position]
+        val item = items[position]
         holder.itemView.itemTitleTextView.text = item.title
         holder.itemView.itemDescriptionTextView.text = item.description
-        holder.itemView.contact1ImageView.setImageResource(R.drawable.ic_baseline_phone_24)
+        holder.itemView.contact1ImageView.setImageResource(
+            if (item.contact.type == Contact.PHONE)
+                R.drawable.ic_baseline_phone_24
+            else
+                R.drawable.ic_baseline_email_24
+        )
         holder.itemView.contact1TextView.text = String.format(
             "${item.contact.address} ~ ${item.contact.name}"
         )
-        holder.itemView.priceTextView.text = String.format(holder.itemView.resources.getString(
-            R.string.bdm_2_lines, item.price)
+        holder.itemView.priceTextView.text = String.format(
+            holder.itemView.resources.getString(
+                R.string.bdm_2_lines,
+                item.price,
+                if (item.unit.isNotEmpty()) "/${item.unit}" else ""
+            )
         )
         holder.itemView.setOnClickListener {
             onItemClick?.let { oic -> oic(item) }
@@ -53,7 +60,7 @@ class ProductsRecyclerViewAdapter: RecyclerView.Adapter<ProductsRecyclerViewAdap
     }
 
     override fun getItemCount(): Int {
-        return products.size
+        return items.size
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)

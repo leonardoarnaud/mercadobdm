@@ -55,7 +55,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/itemDescriptionTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/itemDescriptionTextView"
-            tools:text="40.000\nBDM" />
+            tools:text="40.000\nBDM/h" />
 
         <ImageView
             android:id="@+id/contact1ImageView"

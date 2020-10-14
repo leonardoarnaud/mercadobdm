@@ -2,7 +2,7 @@ package br.eti.arnaud.mercadobdm
 
 import android.app.Application
 import br.eti.arnaud.mercadobdm.ui.main.MainViewModel
-import br.eti.arnaud.mercadobdm.ui.products.ProductsViewModel
+import br.eti.arnaud.mercadobdm.ui.items.products.ProductsViewModel
 
 class App: Application() {
 
